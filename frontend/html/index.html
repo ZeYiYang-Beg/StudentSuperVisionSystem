@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="//unpkg.com/element-plus/dist/index.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="//unpkg.com/element-plus"></script>
+    <script src="//unpkg.com/@element-plus/icons-vue"></script>
+    <!-- axios http模块 -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div id="App">
+        <el-container>
+            <el-header style="height: 80px;">学生课堂行为检测系统</el-header>
+            <el-container>
+                <el-aside width="200px">
+                    <el-menu default-active="2" class="el-menu-vertical-demo">
+                        <el-menu-item index="1">
+                            <span>学生管理</span>
+                        </el-menu-item>
+                        <el-menu-item index="2">
+                            <span>课程管理</span>
+                        </el-menu-item>
+                        <el-menu-item index="3">
+                            <span>教师管理</span>
+                        </el-menu-item>
+                        <el-menu-item index="4">
+                            <span>行为检测</span>
+                        </el-menu-item>
+                        <el-menu-item index="5">
+                            <span>班级管理</span>
+                        </el-menu-item>
+                    </el-menu>
+                </el-aside>
+                <el-container>
+                    <!-- 主窗体 -->
+                    <el-main>
+                        <!-- 面包屑 -->
+                        <el-breadcrumb :separator-icon="ArrowRight">
+                            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+                            <el-breadcrumb-item>学生管理</el-breadcrumb-item>
+                        </el-breadcrumb>
+                        <!-- 横向表单 -->
+                        <el-form :inline="true">
+                            <el-row>
+                                <el-form-item style="margin-top: 20px;">
+                                    <el-text class="mx-1" style="margin-right: 10px;">请输入内容查询: </el-text>
+                                    <el-input v-model="check" placeholder="请输入内容查询" style="width: 320px;"></el-input>
+                                </el-form-item>
+                                <el-form-item style="margin-top: 20px;">
+                                    <el-button type="success">查询</el-button>
+                                    <el-button type="success">全选</el-button>
+                                    <el-button type="success">加载</el-button>
+                                </el-form-item>
+                                <el-form-item style="margin-top: 29px;">
+                                    <el-upload v-model:file-list="fileList" class="upload-demo"
+                                        action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15" multiple
+                                        :on-preview="handlePreview" :on-remove="handleRemove"
+                                        :before-remove="beforeRemove" :limit="3" :on-exceed="handleExceed">
+                                        <el-button type="primary">导入EXCEL文件</el-button>
+                                    </el-upload>
+                                </el-form-item>
+                                <el-form-item style="margin-top: 20px;">
+                                    <el-button type="primary">导出EXCEL文件</el-button>
+                                </el-form-item>
+                            </el-row>
+                        </el-form>
+                        <!-- 表格 -->
+                        <el-table :data="students" stripe border style="width: 100%">
+                            <el-table-column type="selection"></el-table-column>
+                            <el-table-column type="index" label="序号" width="60" align="center"></el-table-column>
+                            <el-table-column prop="sno" label="学号" width="100" align="center"></el-table-column>
+                            <el-table-column prop="name" label="姓名" width="60" align="center"></el-table-column>
+                            <el-table-column prop="gender" label="性别" width="60" align="center"></el-table-column>
+                            <el-table-column prop="sclass" label="班级" width="120" align="center"></el-table-column>
+                            <el-table-column prop="birthday" label="生日" width="150" align="center"></el-table-column>
+                            <el-table-column prop="mobile" label="移动电话" width="150" align="center"></el-table-column>
+                            <el-table-column prop="spassword" label="登陆密码" width="150" align="center"></el-table-column>
+                            <el-table-column prop="address" label="地址" align="center"></el-table-column>
+                            <el-table-column fixed="right" label="操作" width="150" align="center">
+                                <el-button link type="primary" size="small">修改</el-button>
+                                <el-button link type="primary" size="small">查看</el-button>
+                                <el-button link type="primary" size="small">删除</el-button>
+                            </el-table-column>
+                        </el-table>
+                        <!-- 分页 -->
+                        <el-row style="margin-top: 10px;">
+                            <el-col :span="8" style="text-align: left;">
+                                <el-button type="primary">批量删除</el-button>
+                                </el-col>
+                            <el-col :span="16" style="text-align: right;">
+                                <el-pagination v-model:current-page="currentPage4" v-model:page-size="page_size"
+                                    :page-sizes="[5, 10, 50, 100]" :small="small" :disabled="disabled"
+                                    :background="background" layout="total, sizes, prev, pager, next, jumper"
+                                    :total="total"/>
+                            </el-col>
+                        </el-row>
+                    </el-main>
+                    <!-- 尾部 -->
+                    <el-footer style="height: 30px;">学生课堂行为检测系统 版权所有: Zeyi Yang | 2024/3/20</el-footer>
+                </el-container>
+            </el-container>
+        </el-container>
+    </div>
+    <script src="../javascript/index.js"></script>
+    <script lang="ts" setup>
+        import {
+            Document,
+            Menu as IconMenu,
+            Location,
+            Setting,
+            Delete,
+            Loading,
+            Search
+        } from '@element-plus/icons-vue'
+        import { ArrowRight } from '@element-plus/icons-vue'
+    </script>
+</body>
+
+</html>
