@@ -49,7 +49,8 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 关闭CSRF
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -57,6 +58,8 @@ MIDDLEWARE = [
 # 开启跨域(DJANGO + VUE)
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
+# CSRF信任网站 POST
+# CSRF_TRUSTED_ORIGINS = [ 'http://127.0.0.1:5500']
 
 ROOT_URLCONF = 'backend.urls'
 

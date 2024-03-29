@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/frontend_main.css">
+    <link rel="stylesheet" href="//unpkg.com/element-plus/dist/index.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="//unpkg.com/element-plus"></script>
+    <script src="//unpkg.com/@element-plus/icons-vue"></script>
+    <!-- axios http模块 -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="Frontend_main">
+        <div class="common-layout">
+        <el-container>
+        <el-header>
+            <el-row>
+                <el-input v-model="text"></el-input>
+            </el-row>
+        </el-header>
+        <el-main><div :model="text"></div></el-main>
+        <el-footer>学生课堂行为检测系统 版权所有: Zeyi Yang | 2024/3/20</el-footer>
+        </el-container>
+    </div>
+    </div>
+    <script src="../javascript/frontend_main.js"></script>
+</body>
+</html>

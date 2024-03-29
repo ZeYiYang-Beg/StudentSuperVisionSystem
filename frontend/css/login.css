@@ -1,0 +1,15 @@
+body {
+    font-family: "JetBains Mono Medium";
+}
+
+#Login {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 500px;
+    width: 500px;
+    border-radius: 100px;
+    border-color: black;
+    border-width: 2px;
+    background-color: beige;
+}

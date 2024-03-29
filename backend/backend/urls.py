@@ -22,4 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # 获取所有学生的JSON信息
     path('students/', views.get_students), 
+    # 查询学生信息
+    path('students/query/', views.query_students),
+    # 校验学号是否存在
+    path("students/sno/check/", views.is_exists_sno),
 ]
